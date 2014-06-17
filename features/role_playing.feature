@@ -1,6 +1,6 @@
 Feature: Playing a role
 
-  Scenario: Spec passes when the method is implemented
+  Background:
     Given a file named "spec/spec_helper.rb" with:
       """ruby
       require 'rspec/roles'
@@ -26,6 +26,7 @@ Feature: Playing a role
       end
       """
 
+  Scenario: Spec passes when the object plays the role
     Given a file named "app/console_logger.rb" with:
       """ruby
       class ConsoleLogger
@@ -36,4 +37,17 @@ Feature: Playing a role
       """
 
     When I run `rspec spec/console_logger_spec.rb`
-    Then the examples should all pass
+    Then the example should pass
+
+  Scenario: Spec fails when the object does not play the role
+    Given a file named "app/console_logger.rb" with:
+      """ruby
+      class ConsoleLogger
+        def not_log(message)
+          puts message
+        end
+      end
+      """
+
+    When I run `rspec spec/console_logger_spec.rb`
+    Then the example should fail
