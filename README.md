@@ -1,4 +1,4 @@
-# Rspec::Roles
+# RSpec::Roles
 
 TODO: Write a gem description
 

@@ -5,7 +5,7 @@ require 'rspec/roles/version'
 
 Gem::Specification.new do |spec|
   spec.name = "rspec-roles"
-  spec.version = Rspec::Roles::VERSION
+  spec.version = RSpec::Roles::VERSION
   spec.authors = ["Christian Treppo"]
   spec.email = ["christian@treppo.org"]
   spec.summary = %q{Test if objects fulfill a certain role}
