@@ -8,17 +8,6 @@ Feature: Playing a role
       $LOAD_PATH.unshift('app')
       """
 
-    Given a file named "spec/console_logger_spec.rb" with:
-      """ruby
-      require 'spec_helper'
-      require 'console_logger'
-      require 'roles/logger'
-
-      describe ConsoleLogger do
-        plays_role 'Logger'
-      end
-      """
-
     Given a file named "spec/roles/logger.rb" with:
       """ruby
       RSpec::Roles.define 'Logger' do
@@ -26,26 +15,44 @@ Feature: Playing a role
       end
       """
 
-  Scenario: Spec passes when the object plays the role
+    Given a file named "spec/roles/writer.rb" with:
+      """ruby
+      RSpec::Roles.define 'Writer' do
+        def write(message); end
+      end
+      """
+
+    Given a file named "spec/console_logger_spec.rb" with:
+      """ruby
+      require 'spec_helper'
+      require 'console_logger'
+      require 'roles/logger'
+      require 'roles/writer'
+
+      describe ConsoleLogger do
+        it_plays_role 'Logger'
+        it_plays_role 'Writer'
+      end
+      """
+
+  Scenario: Spec passes when the object plays all the roles
     Given a file named "app/console_logger.rb" with:
       """ruby
       class ConsoleLogger
-        def log(message)
-          puts message
-        end
+        def log(message); end
+        def write(message); end
       end
       """
 
     When I run `rspec spec/console_logger_spec.rb`
     Then the example should pass
 
-  Scenario: Spec fails when the object does not play the role
+  Scenario: Spec fails when the object does not play all the roles
     Given a file named "app/console_logger.rb" with:
       """ruby
       class ConsoleLogger
-        def not_log(message)
-          puts message
-        end
+        def not_log(message); end
+        def not_write(message); end
       end
       """
 

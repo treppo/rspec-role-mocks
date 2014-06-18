@@ -1,12 +1,19 @@
 require 'rspec/roles/version'
+require 'rspec/roles/subject'
 require 'rspec/core'
 
 module RSpec
   module Roles
-    def plays_role name
+    @@loaded_roles = {}
+
+    def it_plays_role(name)
+      it "plays the #{name} role" do
+        expect(Subject.new(described_class, @@loaded_roles)).to be_playing_role name
+      end
     end
 
-    def self.define name
+    def self.define(name, &block)
+      @@loaded_roles[name] ||= Class.new(&block)
     end
   end
 end
