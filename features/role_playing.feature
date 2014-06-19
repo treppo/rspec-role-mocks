@@ -11,6 +11,7 @@ Feature: Playing a role
     Given a file named "spec/roles/logger.rb" with:
       """ruby
       RSpec::Roles.define 'Logger' do
+        def initialize(opts); end
         def log(message); end
       end
       """
@@ -39,6 +40,7 @@ Feature: Playing a role
     Given a file named "app/console_logger.rb" with:
       """ruby
       class ConsoleLogger
+        def initialize(opts); end
         def log(message); end
         def write(message); end
       end
