@@ -3,7 +3,7 @@ rvm:
   - ruby-head
   - jruby
   - jruby-head
-  - rbx
+  - rbx-2.2.9
 
 matrix:
   include:
