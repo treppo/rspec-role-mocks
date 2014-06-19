@@ -12,6 +12,7 @@ Feature: Playing a role
       """ruby
       RSpec::Roles.define 'Logger' do
         def initialize(opts); end
+        def self.create(opts); end
         def log(message); end
       end
       """
@@ -41,6 +42,7 @@ Feature: Playing a role
       """ruby
       class ConsoleLogger
         def initialize(opts); end
+        def self.create(opts); end
         def log(message); end
         def write(message); end
       end

@@ -7,7 +7,7 @@ module RSpec
       describe '#playing_role?' do
         ROLE_NAME = 'Logger'
 
-        it 'is true if the subject is implementing all methods defined in the role' do
+        it 'is true if the subject is implementing all instance methods defined in the role' do
           role = define_role do
             def log(message); end
             def set; end
@@ -23,7 +23,21 @@ module RSpec
           expect(subj).to be_playing_role ROLE_NAME
         end
 
-        it 'is false if the subject is not implementing all methods defined in the role' do
+        it 'is true if the subject is implementing all class methods defined in the role' do
+          role = define_role do
+            def self.create(opts); end
+          end
+          roles_repo = fake_roles_repo(role)
+          given_class = Class.new do
+            def self.create(opts); end
+          end
+
+          subj = described_class.new(given_class, roles_repo)
+
+          expect(subj).to be_playing_role ROLE_NAME
+        end
+
+        it 'is false if the subject is not implementing all instance methods defined in the role' do
           role = define_role do
             def log(message); end
             def set; end
@@ -31,6 +45,21 @@ module RSpec
           roles_repo = fake_roles_repo(role)
           given_class = Class.new do
             def log(message); end
+          end
+
+          subj = described_class.new(given_class, roles_repo)
+
+          expect(subj).not_to be_playing_role ROLE_NAME
+        end
+
+        it 'is false if the subject is not implementing all class methods defined in the role' do
+          role = define_role do
+            def self.create(opts); end
+            def self.check; end
+          end
+          roles_repo = fake_roles_repo(role)
+          given_class = Class.new do
+            def self.check; end
           end
 
           subj = described_class.new(given_class, roles_repo)

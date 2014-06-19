@@ -8,13 +8,21 @@ module RSpec
 
       def playing_role?(role_name)
         role = @roles.fetch(role_name)
-        methods_implemented?(role) && constructor_implemented?(role)
+        class_methods_implemented?(role) &&
+          instance_methods_implemented?(role) &&
+          constructor_implemented?(role)
       end
 
       private
-      def methods_implemented?(role)
+      def class_methods_implemented?(role)
+        role.methods(false).all? do |method_name|
+          @given_class.methods(false).include?(method_name)
+        end
+      end
+
+      def instance_methods_implemented?(role)
         role.instance_methods(false).all? do |method_name|
-          @given_class.method_defined?(method_name)
+          @given_class.instance_methods(false).include?(method_name)
         end
       end
 
