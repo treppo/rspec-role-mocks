@@ -20,7 +20,7 @@ Feature: Playing a role
     Given a file named "spec/roles/writer.rb" with:
       """ruby
       RSpec::Roles.define 'Writer' do
-        def write(message); end
+        def write(message, opts); end
       end
       """
 
@@ -44,7 +44,7 @@ Feature: Playing a role
         def initialize(opts); end
         def self.create(opts); end
         def log(message); end
-        def write(message); end
+        def write(message, opts); end
       end
       """
 

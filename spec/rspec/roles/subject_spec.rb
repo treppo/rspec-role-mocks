@@ -9,7 +9,7 @@ module RSpec
 
         let(:roles_repo) { fake_roles_repo(role) }
 
-        context 'role defines instance methods' do
+        context 'matching instance methods defined by role' do
           let(:role) do
             define_role do
               def log(message); end
@@ -39,7 +39,7 @@ module RSpec
           end
         end
 
-        context 'role defines class methods' do
+        context 'matching class methods defined by role' do
           let(:role) do
             role = define_role do
               def self.create(opts); end
@@ -69,7 +69,7 @@ module RSpec
           end
         end
 
-        context 'role defines the constructor' do
+        context 'matching constructor defined by role' do
           let(:role) do
             define_role do
               def initialize(message); end
@@ -91,6 +91,44 @@ module RSpec
           it 'is false if the subject is not implementing it' do
             given_class = Class.new do
               def log; end
+            end
+
+            subj = described_class.new(given_class, roles_repo)
+
+            expect(subj).not_to be_playing_role ROLE_NAME
+          end
+        end
+
+        context 'matching method parameters' do
+          let(:role) do
+            define_role do
+              def meth(required, required2, *rest, &block); end
+            end
+          end
+
+          it 'is true if the subject method has the parameters' do
+            given_class = Class.new do
+              def meth(required, required2, *rest, &block); end
+            end
+
+            subj = described_class.new(given_class, roles_repo)
+
+            expect(subj).to be_playing_role ROLE_NAME
+          end
+
+          it 'is false if the arity off' do
+            given_class = Class.new do
+              def meth(required); end
+            end
+
+            subj = described_class.new(given_class, roles_repo)
+
+            expect(subj).not_to be_playing_role ROLE_NAME
+          end
+
+          it 'is false if the parameters have different names' do
+            given_class = Class.new do
+              def meth(required, required_other, *rest, &block); end
             end
 
             subj = described_class.new(given_class, roles_repo)

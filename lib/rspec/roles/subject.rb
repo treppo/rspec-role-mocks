@@ -7,16 +7,25 @@ module RSpec
       end
 
       def playing_role?(role_name)
-        methods_implemented? @roles.fetch(role_name)
+        role = @roles.fetch(role_name)
+        matching_methods?(role)
       end
 
       private
-      def methods_implemented?(role)
-        [:methods, # returns class methods
-        :instance_methods,
-        :private_instance_methods].all? do |method_type|
-          role.send(method_type, false).all? do |method_name|
-            @given_class.send(method_type, false).include?(method_name)
+      def matching_methods?(role)
+        accessor_map = { methods: :method, # class methods
+          instance_methods: :instance_method,
+          private_instance_methods: :instance_method }
+
+        accessor_map.all? do |method_names, method_objects|
+          names = role.send(method_names, false)
+
+          names.all? do |name|
+            methods = @given_class.send(method_names, false)
+
+            methods.include?(name) &&
+              role.send(method_objects, name).parameters ==
+                @given_class.send(method_objects, name).parameters
           end
         end
       end
