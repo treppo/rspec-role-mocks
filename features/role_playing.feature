@@ -5,12 +5,12 @@ Feature: Playing a role
       """ruby
       require 'rspec/roles'
 
-      $LOAD_PATH.unshift('app')
+      $LOAD_PATH.unshift('lib')
       """
 
     Given a file named "spec/roles/logger.rb" with:
       """ruby
-      RSpec::Roles.define 'Logger' do
+      RSpec.define_role 'Logger' do
         def initialize(opts); end
         def self.create(opts); end
         def log(message); end
@@ -19,7 +19,7 @@ Feature: Playing a role
 
     Given a file named "spec/roles/writer.rb" with:
       """ruby
-      RSpec::Roles.define 'Writer' do
+      RSpec.define_role 'Writer' do
         def write(message, opts); end
       end
       """
@@ -38,7 +38,7 @@ Feature: Playing a role
       """
 
   Scenario: Spec passes when the object plays all the roles
-    Given a file named "app/console_logger.rb" with:
+    Given a file named "lib/console_logger.rb" with:
       """ruby
       class ConsoleLogger
         def initialize(opts); end
@@ -52,7 +52,7 @@ Feature: Playing a role
     Then the example should pass
 
   Scenario: Spec fails when the object does not play all the roles
-    Given a file named "app/console_logger.rb" with:
+    Given a file named "lib/console_logger.rb" with:
       """ruby
       class ConsoleLogger
         def not_log(message); end
