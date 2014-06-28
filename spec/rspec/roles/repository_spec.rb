@@ -9,7 +9,7 @@ module RSpec
       let(:definition) { Class.new }
 
       it 'stores role definition' do
-        repo[ROLE_NAME] = definition
+        repo.add(ROLE_NAME, definition)
 
         expect(repo.fetch(ROLE_NAME)).to equal definition
       end

@@ -8,7 +8,7 @@ module RSpec
         @roles = {}
       end
 
-      def [](role_name)
+      def fetch(role_name)
         definition = @roles[role_name]
 
         if definition.nil?
@@ -18,11 +18,9 @@ module RSpec
         definition
       end
 
-      def []=(role_name, definition)
+      def add(role_name, definition)
         @roles[role_name] = definition
       end
-
-      alias_method :fetch, :[]
     end
   end
 end
