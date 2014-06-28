@@ -1,11 +1,12 @@
 require 'rspec/roles/version'
+require 'rspec/roles/repository'
 require 'rspec/roles/definition'
 require 'rspec/roles/conformance'
 require 'rspec/core'
 
 module RSpec
   module Roles
-    @@loaded_roles = {}
+    @@loaded_roles = Repository.new
 
     def self.loaded_roles
       @@loaded_roles
