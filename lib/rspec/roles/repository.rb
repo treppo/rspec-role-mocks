@@ -18,7 +18,7 @@ module RSpec
         definition
       end
 
-      def add(role_name, definition)
+      def add!(role_name, definition)
         @roles[role_name] = definition
       end
     end

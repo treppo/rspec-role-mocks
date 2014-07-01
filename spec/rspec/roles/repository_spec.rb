@@ -9,13 +9,13 @@ module RSpec
       let(:definition) { Class.new }
 
       it 'stores role definition' do
-        repo.add(ROLE_NAME, definition)
+        repo.add!(ROLE_NAME, definition)
 
         expect(repo.fetch(ROLE_NAME)).to equal definition
       end
 
       it 'raises an exception, when the role is not defined' do
-        expect{ repo.fetch('NotDefined') }.to raise_error RoleNotRequiredError, "The role NotDefined has not been required"
+        expect { repo.fetch('NotDefined') }.to raise_error RoleNotRequiredError, "The role NotDefined has not been required"
       end
     end
   end
