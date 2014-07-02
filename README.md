@@ -1,5 +1,11 @@
 # RSpec::Roles
 
+[![Build Status](https://travis-ci.org/treppo/rspec-roles.svg?branch=master)](https://travis-ci.org/treppo/rspec-roles)
+[![Coverage Status](https://img.shields.io/coveralls/treppo/rspec-roles.svg)](https://coveralls.io/r/treppo/rspec-roles)
+[![Code Climate](https://codeclimate.com/github/treppo/rspec-roles.png)](https://codeclimate.com/github/treppo/rspec-roles)
+[![Dependency Status](https://gemnasium.com/treppo/rspec-roles.svg)](https://gemnasium.com/treppo/rspec-roles)
+[![Inline docs](http://inch-ci.org/github/treppo/rspec-roles.svg?branch=master)](http://inch-ci.org/github/treppo/rspec-roles)
+
 TODO: Write a gem description
 
 ## Installation
