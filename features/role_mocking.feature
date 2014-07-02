@@ -74,17 +74,16 @@ Feature: Mocking roles, not objects
     Then the example should fail
     And the output should contain "role Notifier does not implement: #call"
 
-  # TODO
-  # Scenario: spec fails with incorrect arity
-  #   Given a file named "lib/user.rb" with:
-  #     """ruby
-  #     class User < Struct.new(:notifier)
-  #       def suspend!
-  #         notifier.notify
-  #       end
-  #     end
-  #     """
-  #
-  #   When I run `rspec spec/user_spec.rb`
-  #   Then the output should contain "1 example, 1 failure"
-  #   And the output should contain "Wrong number of arguments."
+  Scenario: spec fails with incorrect arity
+    Given a file named "lib/user.rb" with:
+      """ruby
+      class User < Struct.new(:notifier)
+        def suspend!
+          notifier.notify
+        end
+      end
+      """
+
+    When I run `rspec spec/user_spec.rb`
+    Then the output should contain "1 example, 1 failure"
+    And the output should contain "Wrong number of arguments for #notify"

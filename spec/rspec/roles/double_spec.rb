@@ -9,7 +9,7 @@ module RSpec
         let(:dbl) { Double.new('Logger', role) }
 
         it 'returns when role defines all recorded method calls' do
-          dbl.log
+          dbl.log('message')
 
           expect(dbl.verify).to be
         end
@@ -20,10 +20,16 @@ module RSpec
           expect { dbl.verify }.to raise_error
         end
 
+        it 'raises an error when the called method has a different arity' do
+          dbl.log
+
+          expect { dbl.verify }.to raise_error
+        end
+
         it 'returns when the expected method call has been made' do
           dbl.add_expectation :log
 
-          dbl.log
+          dbl.log('message')
 
           expect(dbl.verify).to be
         end
