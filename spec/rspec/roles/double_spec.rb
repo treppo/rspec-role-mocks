@@ -6,7 +6,7 @@ module RSpec
     describe Double do
       describe '#verify' do
         let(:role) { Class.new { def log(message); end } }
-        let(:dbl) { Double.new(role) }
+        let(:dbl) { Double.new('Logger', role) }
 
         it 'returns when role defines all recorded method calls' do
           dbl.log

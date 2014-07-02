@@ -6,7 +6,7 @@ module RSpec
     module ExampleMethods
       def role_double(name)
         RSpec::Roles::Doubles.register(
-          RSpec::Roles::Double.new(
+          RSpec::Roles::Double.new(name,
             RSpec::Roles.loaded_roles.fetch(name)))
       end
 

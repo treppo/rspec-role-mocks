@@ -57,22 +57,24 @@ Feature: Mocking roles, not objects
 
     When I run `rspec spec/user_spec.rb`
     Then the example should fail
+    And the output should contain "expected method call to #notify was never made"
+
+  Scenario: spec fails with method not defined
+    Given a file named "lib/user.rb" with:
+      """ruby
+      class User < Struct.new(:notifier)
+        def suspend!
+          notifier.notify("suspended")
+          notifier.call
+        end
+      end
+      """
+
+    When I run `rspec spec/user_spec.rb`
+    Then the example should fail
+    And the output should contain "role Notifier does not implement: #call"
 
   # TODO
-  # Scenario: spec fails with method not defined
-  #   Given a file named "lib/user.rb" with:
-  #     """ruby
-  #     class User < Struct.new(:notifier)
-  #       def suspend!
-  #         notifier.call("suspended as")
-  #       end
-  #     end
-  #     """
-  #
-  #   When I run `rspec spec/user_spec.rb`
-  #   Then the output should contain "1 example, 1 failure"
-  #   And the output should contain "role Notifier does not implement:"
-  #
   # Scenario: spec fails with incorrect arity
   #   Given a file named "lib/user.rb" with:
   #     """ruby
