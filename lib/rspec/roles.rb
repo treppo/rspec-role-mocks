@@ -21,5 +21,4 @@ RSpec.configure do |rspec|
   rspec.extend RSpec::Roles::Conformance
   rspec.include RSpec::Roles::ExampleMethods
   rspec.mock_framework = RSpec::Roles::Adapter
-  rspec.backtrace_exclusion_patterns << %r(/lib/rspec/roles)
 end
