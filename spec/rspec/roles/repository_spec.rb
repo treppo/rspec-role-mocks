@@ -4,14 +4,14 @@ require 'rspec/roles/repository'
 module RSpec
   module Roles
     describe Repository do
-      ROLE_NAME = 'Logger'
+      let(:role_name) { 'Logger' }
       let(:repo) { described_class.new }
       let(:definition) { Class.new }
 
       it 'stores role definition' do
-        repo.add!(ROLE_NAME, definition)
+        repo.add!(role_name, definition)
 
-        expect(repo.fetch(ROLE_NAME)).to equal definition
+        expect(repo.fetch(role_name)).to equal definition
       end
 
       it 'raises an exception, when the role is not defined' do

@@ -5,7 +5,7 @@ module RSpec
   module Roles
     describe Subject do
       describe '#playing_role?' do
-        ROLE_NAME = 'Logger'
+        let(:role_name) { 'Logger' }
 
         let(:roles_repo) { fake_roles_repo(role) }
 
@@ -25,7 +25,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).to be_playing_role ROLE_NAME
+            expect(subj).to be_playing_role role_name
           end
 
           it 'is false if the subject is not implementing all' do
@@ -35,7 +35,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).not_to be_playing_role ROLE_NAME
+            expect(subj).not_to be_playing_role role_name
           end
         end
 
@@ -55,7 +55,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).to be_playing_role ROLE_NAME
+            expect(subj).to be_playing_role role_name
           end
 
           it 'is false if the subject is not implementing all' do
@@ -65,7 +65,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).not_to be_playing_role ROLE_NAME
+            expect(subj).not_to be_playing_role role_name
           end
         end
 
@@ -85,7 +85,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).to be_playing_role ROLE_NAME
+            expect(subj).to be_playing_role role_name
           end
 
           it 'is false if the subject is not implementing it' do
@@ -95,7 +95,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).not_to be_playing_role ROLE_NAME
+            expect(subj).not_to be_playing_role role_name
           end
         end
 
@@ -113,7 +113,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).to be_playing_role ROLE_NAME
+            expect(subj).to be_playing_role role_name
           end
 
           it 'is false if the arity off' do
@@ -123,7 +123,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).not_to be_playing_role ROLE_NAME
+            expect(subj).not_to be_playing_role role_name
           end
 
           it 'is false if the parameters have different names' do
@@ -133,7 +133,7 @@ module RSpec
 
             subj = described_class.new(given_class, roles_repo)
 
-            expect(subj).not_to be_playing_role ROLE_NAME
+            expect(subj).not_to be_playing_role role_name
           end
         end
 
@@ -142,7 +142,7 @@ module RSpec
         end
 
         def fake_roles_repo(role)
-          {ROLE_NAME => role}
+          {role_name => role}
         end
       end
     end
