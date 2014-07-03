@@ -8,12 +8,6 @@ module RSpec
         let(:role) { Class.new { def log(message); end } }
         let(:dbl) { Double.new('Logger', role) }
 
-        it 'returns when role defines all recorded method calls' do
-          dbl.log('message')
-
-          expect(dbl.verify).to be
-        end
-
         it 'raises an error when the role does not define all called methods' do
           dbl.not_defined
 
@@ -26,16 +20,28 @@ module RSpec
           expect { dbl.verify }.to raise_error
         end
 
-        it 'returns when the expected method call has been made' do
-          dbl.add_expectation :log
+        context 'when role defines the recorded method call' do
+          context 'when the expected method call has been made' do
+            it 'returns when called with the expected arguments' do
+              dbl.add_expectation(:log, ['message'])
 
-          dbl.log('message')
+              dbl.log('message')
 
-          expect(dbl.verify).to be
+              expect(dbl.verify).to be
+            end
+
+            it 'raises an error when not called with the expected arguments' do
+              dbl.add_expectation(:log, ['message'])
+
+              dbl.log('other_message')
+
+              expect { dbl.verify }.to raise_error
+            end
+          end
         end
 
         it 'raises an error when the expected method call has not been made' do
-          dbl.add_expectation :log
+          dbl.add_expectation(:log, [])
 
           expect { dbl.verify }.to raise_error
         end

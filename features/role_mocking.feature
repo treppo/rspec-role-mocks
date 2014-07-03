@@ -25,7 +25,7 @@ Feature: Mocking roles, not objects
         it 'notifies the console' do
           notifier = role_double("Notifier")
 
-          expect(notifier).to receive(:notify) # TODO .with("suspended as")
+          expect(notifier).to receive(:notify).with("suspended")
 
           user = User.new(notifier)
           user.suspend!
@@ -87,3 +87,24 @@ Feature: Mocking roles, not objects
     When I run `rspec spec/user_spec.rb`
     Then the output should contain "1 example, 1 failure"
     And the output should contain "Wrong number of arguments for #notify"
+
+  Scenario: spec fails with incorrect argument
+    Given a file named "lib/user.rb" with:
+      """ruby
+      class User < Struct.new(:notifier)
+        def suspend!
+          notifier.notify('not_suspend')
+        end
+      end
+      """
+
+    When I run `rspec spec/user_spec.rb`
+    Then the output should contain "1 example, 1 failure"
+    And the output should contain:
+    """
+    Method #notify received wrong arguments: "not_suspend"
+    """
+    And the output should contain:
+    """
+    expected arguments: "suspended"
+    """

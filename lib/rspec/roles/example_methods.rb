@@ -10,7 +10,7 @@ module RSpec
             RSpec::Roles.loaded_roles.fetch(name)))
       end
 
-      def receive(method_name, &block)
+      def receive(method_name)
         RSpec::Roles::Matchers::Receive.new(method_name)
       end
     end
