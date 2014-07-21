@@ -1,3 +1,5 @@
+require_relative 'double_verifier'
+
 module RSpec
   module Roles
     module Doubles
@@ -9,8 +11,8 @@ module RSpec
           double
         end
 
-        def verify
-          @doubles.each {|dbl| dbl.verify }
+        def verify(verifier = DoubleVerifier)
+          @doubles.each {|dbl| verifier.verify(dbl) }
         end
 
         def reset!
