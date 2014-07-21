@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version = RSpec::Roles::VERSION
   spec.authors = ["Christian Treppo"]
   spec.email = ["christian@treppo.org"]
-  spec.summary = %q{Test if objects fulfill a certain role}
-  spec.description = %q{TODO}
+  spec.summary = %q{A Mocking library for roles.}
+  spec.description = %q{Mock roles, not objects}
   spec.license = "GPLv3"
   spec.homepage = "https://github.com/treppo/rspec-roles"
 

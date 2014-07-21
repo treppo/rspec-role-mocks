@@ -45,6 +45,14 @@ module RSpec
 
           expect { dbl.verify }.to raise_error
         end
+
+        it 'returns a predefined return value' do
+          return_value = 'Brando'
+
+          dbl.add_return_value(:log, return_value)
+
+          expect(dbl.log).to equal(return_value)
+        end
       end
     end
   end

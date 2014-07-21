@@ -4,6 +4,7 @@ module RSpec
       def initialize(name, role)
         @called_methods = {}
         @expectations = {}
+        @return_values = {}
         @name = name
         @role = role
       end
@@ -15,15 +16,19 @@ module RSpec
           providing_expected_arguments?
       end
 
-
       def add_expectation(method_name, args)
         @expectations[method_name] = args
+      end
+
+      def add_return_value(method_name, return_value)
+        @return_values[method_name] = return_value
       end
 
       private
 
       def method_missing(method, *args)
         @called_methods[method] = args || []
+        @return_values[method] if @return_values[method]
       end
 
       def calling_existing_methods?

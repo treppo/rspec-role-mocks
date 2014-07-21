@@ -26,12 +26,18 @@ module RSpec
 
               receive_matcher.with(*expected_arguments).matches?(dbl)
             end
-
-            it 'returns itself for further processing' do
-              expect(receive_matcher.with(1, 2)).to equal(receive_matcher)
-            end
           end
 
+          describe '#and_return' do
+            it 'adds a return value to the double' do
+              return_value = 'Brando'
+
+              allow(dbl).to receive(:add_expectation)
+              expect(dbl).to receive(:add_return_value).with(expected_call, return_value)
+
+              receive_matcher.and_return(return_value).matches?(dbl)
+            end
+          end
         end
       end
     end
