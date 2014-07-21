@@ -57,7 +57,7 @@ Feature: Mocking roles, not objects
 
     When I run `rspec spec/user_spec.rb`
     Then the example should fail
-    And the output should contain "expected method call to #notify was never made"
+    And the output should contain "expected method call to #notify on role double Notifier was never made"
 
   Scenario: spec fails with method not defined
     Given a file named "lib/user.rb" with:
@@ -72,7 +72,7 @@ Feature: Mocking roles, not objects
 
     When I run `rspec spec/user_spec.rb`
     Then the example should fail
-    And the output should contain "role Notifier does not implement: #call"
+    And the output should contain "role double Notifier does not implement: #call"
 
   Scenario: spec fails with incorrect arity
     Given a file named "lib/user.rb" with:
@@ -86,7 +86,9 @@ Feature: Mocking roles, not objects
 
     When I run `rspec spec/user_spec.rb`
     Then the output should contain "1 example, 1 failure"
-    And the output should contain "Wrong number of arguments for #notify"
+    And the output should contain "Wrong number of arguments for #notify on role double Notifier"
+    And the output should contain "Actual: 0"
+    And the output should contain "Expected: 1"
 
   Scenario: spec fails with incorrect argument
     Given a file named "lib/user.rb" with:
@@ -102,7 +104,7 @@ Feature: Mocking roles, not objects
     Then the output should contain "1 example, 1 failure"
     And the output should contain:
     """
-    Method #notify received wrong arguments: "not_suspend"
+    Method #notify on role double Notifier received wrong arguments: "not_suspend"
     """
     And the output should contain:
     """

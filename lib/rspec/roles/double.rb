@@ -1,3 +1,5 @@
+require_relative 'errors'
+
 module RSpec
   module Roles
     class Double
@@ -33,30 +35,25 @@ module RSpec
 
       def calling_existing_methods?
         not_existent = @called_methods.keys - @role.instance_methods(false)
-        not_existent.empty? ||
-          fail("role #{@name} does not implement: ##{not_existent.first}")
+        not_existent.empty? || raise(NotImplemented.new(@name, not_existent))
       end
 
       def meeting_expectations?
         not_called = @expectations.keys - @called_methods.keys
-        not_called.empty? ||
-          fail("expected method call to ##{not_called.first} was never made")
+        not_called.empty? || raise(ExpectationNotMet.new(@name, not_called))
       end
 
       def providing_expected_arguments?
         @called_methods.all? do |method_name, args|
-          args == @expectations[method_name] ||
-            fail("""
-                 Method ##{method_name} received wrong arguments: #{args.to_s[1..-2]}
-                 expected arguments: #{@expectations[method_name].to_s[1..-2]}
-                 """)
+          args == @expectations[method_name] || raise(WrongArguments.new(@name, method_name, args, @expectations[method_name]))
         end
       end
 
       def matching_arity?
         @called_methods.all? do |method_name, args|
-          args.size == @role.instance_method(method_name).arity ||
-            fail("Wrong number of arguments for ##{method_name}")
+          expected = @role.instance_method(method_name).arity
+          actual = args.size
+          actual == expected || raise(WrongArity.new(@name, method_name, actual, expected))
         end
       end
     end
