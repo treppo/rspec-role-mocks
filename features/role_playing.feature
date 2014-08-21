@@ -66,3 +66,7 @@ Feature: Playing a role
     """
     ConsoleLogger does not play role "Logger" as expected
     """
+    And the output should contain:
+    """
+    ConsoleLogger does not play role "Writer" as expected
+    """
