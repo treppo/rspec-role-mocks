@@ -8,14 +8,14 @@ Feature: Mocking roles, not objects
       end
       """
 
-    Given a file named "spec/spec_helper.rb" with:
+    And a file named "spec/spec_helper.rb" with:
       """ruby
       require 'rspec/roles'
 
       $LOAD_PATH.unshift("lib")
       """
 
-    Given a file named "spec/user_spec.rb" with:
+    And a file named "spec/user_spec.rb" with:
       """ruby
       require 'spec_helper'
       require 'user'

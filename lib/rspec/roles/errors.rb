@@ -57,6 +57,17 @@ module RSpec
       end
     end
 
+    class NotPlayingRole < Error
+      def initialize(role_name, subject)
+        @role_name = role_name
+        @subject = subject
+      end
 
+      def to_s
+        """
+        #{@subject} does not play role \"#{@role_name}\" as expected
+        """
+      end
+    end
   end
 end

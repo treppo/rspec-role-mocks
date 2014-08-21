@@ -8,7 +8,7 @@ Feature: Playing a role
       $LOAD_PATH.unshift('lib')
       """
 
-    Given a file named "spec/roles/logger.rb" with:
+    And a file named "spec/roles/logger.rb" with:
       """ruby
       RSpec.define_role 'Logger' do
         def initialize(opts); end
@@ -17,14 +17,14 @@ Feature: Playing a role
       end
       """
 
-    Given a file named "spec/roles/writer.rb" with:
+    And a file named "spec/roles/writer.rb" with:
       """ruby
       RSpec.define_role 'Writer' do
         def write(message, opts); end
       end
       """
 
-    Given a file named "spec/console_logger_spec.rb" with:
+    And a file named "spec/console_logger_spec.rb" with:
       """ruby
       require 'spec_helper'
       require 'console_logger'
@@ -62,3 +62,7 @@ Feature: Playing a role
 
     When I run `rspec spec/console_logger_spec.rb`
     Then the example should fail
+    And the output should contain:
+    """
+    ConsoleLogger does not play role "Logger" as expected
+    """
