@@ -3,10 +3,11 @@ module RSpec
     class Double
       attr_reader :name, :role
 
-      def initialize(name, role)
+      def initialize(name, role, allowed = {})
         @calls = {}
         @expectations = {}
         @return_values = {}
+        @allowed_calls = allowed
         @name = name
         @role = role
       end
@@ -46,8 +47,9 @@ module RSpec
       private
 
       def method_missing(method, *args)
-        @calls[method] = args || []
-        @return_values[method] if @return_values[method]
+        @calls[method] = args || [] unless @allowed_calls[method]
+        return @return_values[method] if @return_values[method]
+        return @allowed_calls[method] if @allowed_calls[method]
       end
     end
   end
