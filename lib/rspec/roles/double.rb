@@ -16,6 +16,22 @@ module RSpec
         @expectations[method_name] = args
       end
 
+      def expected_methods
+        @expectations.keys
+      end
+
+      def expected_args(method)
+        @expectations[method]
+      end
+
+      def existing_methods
+        @role.instance_methods(false)
+      end
+
+      def existing_arity(method)
+        @role.instance_method(method).arity
+      end
+
       def add_return_value(method_name, return_value)
         @return_values[method_name] = return_value
       end
@@ -26,22 +42,6 @@ module RSpec
 
       def called_methods
         @calls.keys
-      end
-
-      def existing_methods
-        @role.instance_methods(false)
-      end
-
-      def expected_methods
-        @expectations.keys
-      end
-
-      def expected_args(method)
-        @expectations[method]
-      end
-
-      def existing_arity(method)
-        @role.instance_method(method).arity
       end
 
       private
