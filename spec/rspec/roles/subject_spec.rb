@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rspec/roles/subject'
+require 'rspec/roles/role'
 
 module RSpec
   module Roles
@@ -8,7 +9,7 @@ module RSpec
 
       context 'matching instance methods defined by role' do
         let(:role) do
-          define_role do
+          Role.new 'Name' do
             def log(message); end
             def set; end
           end
@@ -38,7 +39,7 @@ module RSpec
 
       context 'matching class methods defined by role' do
         let(:role) do
-          role = define_role do
+          role = Role.new 'Name' do
             def self.create(opts); end
             def self.check; end
           end
@@ -68,7 +69,7 @@ module RSpec
 
       context 'matching constructor defined by role' do
         let(:role) do
-          define_role do
+          Role.new 'Name' do
             def initialize(message); end
             def log; end
           end
@@ -98,7 +99,7 @@ module RSpec
 
       context 'matching method parameters' do
         let(:role) do
-          define_role do
+          Role.new 'Name' do
             def meth(required, required2, *rest, &block); end
           end
         end
@@ -132,10 +133,6 @@ module RSpec
 
           expect(subj).not_to be_playing_role
         end
-      end
-
-      def define_role(&block)
-        Class.new(&block)
       end
     end
   end

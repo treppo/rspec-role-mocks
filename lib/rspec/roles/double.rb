@@ -25,7 +25,7 @@ module RSpec
       end
 
       def existing_methods
-        @role.instance_methods(false)
+        @role.instance_methods
       end
 
       def existing_arity(method)

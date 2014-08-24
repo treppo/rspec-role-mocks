@@ -1,12 +1,15 @@
 require 'spec_helper'
 require 'rspec/roles/double'
+require 'rspec/roles/role'
 
 module RSpec
   module Roles
     describe Double do
       describe '#verify' do
         let(:val) { 'Brundo' }
-        let(:role) { Class.new { def log(message) end } }
+        let(:role) { Role.new 'Logger' do
+          def log(message) end
+        end }
         let(:dbl) { Double.new('Logger', role) }
 
         it 'returns a predefined return value' do

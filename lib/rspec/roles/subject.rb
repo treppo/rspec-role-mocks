@@ -3,7 +3,7 @@ module RSpec
     class Subject
       def initialize(subject, role)
         @subject = InconsistencyWrapper.new(subject)
-        @role = InconsistencyWrapper.new(role)
+        @role = role
       end
 
       def playing_role?
