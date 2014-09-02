@@ -7,7 +7,7 @@ module RSpec
       def role_double(name, allowed = {})
         RSpec::Roles::Doubles.register(
           RSpec::Roles::Double.new(name,
-            RSpec::Roles.loaded_roles.fetch(name), allowed))
+            RSpec::Roles.loaded_roles.fetch(name), allowed: allowed))
       end
 
       def receive(method_name)

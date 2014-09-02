@@ -6,7 +6,7 @@ module RSpec
   module Roles
     describe Doubles do
       let(:role) { Class.new { def log(message); end } }
-      let(:dbl) { Double.new('Logger', role) }
+      let(:dbl) { double }
 
       after do
         described_class.reset!
@@ -20,12 +20,11 @@ module RSpec
 
       describe '.verify' do
         it 'verifies all registered doubles' do
-          verifier = double('DoubleVerifier')
           described_class.register(dbl)
 
-          expect(verifier).to receive(:verify).with(dbl)
+          expect(dbl).to receive(:verify)
 
-          described_class.verify(verifier)
+          described_class.verify
         end
       end
     end

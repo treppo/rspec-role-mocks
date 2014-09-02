@@ -12,8 +12,9 @@ module RSpec
 
           it 'adds an expected method call to a double' do
             empty_arguments = []
+            ret_val = nil
 
-            expect(dbl).to receive(:add_expectation).with(expected_call, empty_arguments)
+            expect(dbl).to receive(:add_expectation).with(expected_call, empty_arguments, ret_val)
 
             receive_matcher.matches?(dbl)
           end
@@ -21,19 +22,20 @@ module RSpec
           describe '#with' do
             it 'adds the expected method call and the arguments to the double' do
               expected_arguments = ['arg1', 'arg2']
+              ret_val = nil
 
-              expect(dbl).to receive(:add_expectation).with(expected_call, expected_arguments)
+              expect(dbl).to receive(:add_expectation).with(expected_call, expected_arguments, ret_val)
 
               receive_matcher.with(*expected_arguments).matches?(dbl)
             end
           end
 
           describe '#and_return' do
-            it 'adds a return value to the double' do
+            it 'adds a return value to the expectation in the double' do
               return_value = 'Brando'
+              args = []
 
-              allow(dbl).to receive(:add_expectation)
-              expect(dbl).to receive(:add_return_value).with(expected_call, return_value)
+              expect(dbl).to receive(:add_expectation).with(expected_call, args, return_value)
 
               receive_matcher.and_return(return_value).matches?(dbl)
             end

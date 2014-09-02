@@ -24,6 +24,10 @@ module RSpec
         @definitian.instance_method(name)
       end
 
+      def instance_method_arity(name)
+        @definitian.instance_method(name).arity
+      end
+
       def class_methods
         @definitian.methods(false)
       end

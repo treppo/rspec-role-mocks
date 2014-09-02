@@ -9,8 +9,7 @@ module RSpec
         end
 
         def matches?(double)
-          double.add_expectation(@method_name, @args)
-          double.add_return_value(@method_name, @ret_val) if @ret_val
+          double.add_expectation(@method_name, @args, @ret_val)
           double
         end
 
