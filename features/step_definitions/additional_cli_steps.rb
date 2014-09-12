@@ -10,3 +10,10 @@ Then /^the example(?:s)? should(?: all)? fail$/ do
   expect(examples).to be > 0
   expect(examples).to eq(failures)
 end
+
+Then(/^(\d+) example should fail$/) do |count|
+  step %q{the exit status should be 1}
+  failures = all_output.match(/(\d+) failures?/).captures.map(&:to_i).first
+
+  expect(failures).to eq count.to_i
+end
