@@ -2,7 +2,7 @@ class RoleNotRequiredError < NameError
 end
 
 module RSpec
-  module Roles
+  module RoleMocks
     class Repository
       def initialize
         @roles = {}

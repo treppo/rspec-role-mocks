@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'rspec/roles/repository'
+require 'rspec/role-mocks/repository'
 
 module RSpec
-  module Roles
+  module RoleMocks
     describe Repository do
       let(:role_name) { 'Logger' }
       let(:repo) { described_class.new }

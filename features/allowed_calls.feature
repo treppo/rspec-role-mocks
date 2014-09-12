@@ -10,7 +10,7 @@ Feature: Initialize mocks with allowed calls
 
     And a file named "spec/spec_helper.rb" with:
       """ruby
-      require 'rspec/roles'
+      require 'rspec/role-mocks'
       $LOAD_PATH.unshift("lib")
       """
 

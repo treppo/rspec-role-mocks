@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     module Matchers
       class Receive
         def initialize(method_name, opts = {})

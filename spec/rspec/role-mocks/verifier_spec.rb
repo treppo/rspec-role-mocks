@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'rspec/roles/verifier'
-require 'rspec/roles/role'
+require 'rspec/role-mocks/verifier'
+require 'rspec/role-mocks/role'
 
 module RSpec
-  module Roles
+  module RoleMocks
     describe Verifier do
       let(:calls) { double('Calls') }
       let(:expectations) { double('Expectations') }

@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     class Subject
       def initialize(subject, role)
         @subject = InconsistencyWrapper.new(subject)

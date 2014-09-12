@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'rspec/roles/subject'
-require 'rspec/roles/role'
+require 'rspec/role-mocks/subject'
+require 'rspec/role-mocks/role'
 
 module RSpec
-  module Roles
+  module RoleMocks
     describe Subject do
       let(:role_name) { 'Logger' }
 

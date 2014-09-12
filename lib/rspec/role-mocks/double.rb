@@ -3,7 +3,7 @@ require_relative 'verifier'
 require_relative 'calls'
 
 module RSpec
-  module Roles
+  module RoleMocks
     class Double
       def initialize(name, role, opts = {})
         @name = name

@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     module Adapter
       def setup_mocks_for_rspec
         # called before each example is run
@@ -7,12 +7,12 @@ module RSpec
 
       def verify_mocks_for_rspec
         # called after each example is run
-        RSpec::Roles::Doubles.verify
+        RSpec::RoleMocks::Doubles.verify
       end
 
       def teardown_mocks_for_rspec
         # called after verify_mocks_for_rspec
-        RSpec::Roles::Doubles.reset!
+        RSpec::RoleMocks::Doubles.reset!
       end
     end
   end

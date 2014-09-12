@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     module Doubles
       @doubles = []
 

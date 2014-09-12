@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     class Role
       attr_reader :__name
 

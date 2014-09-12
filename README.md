@@ -1,10 +1,10 @@
-# RSpec::Roles
+# RSpec::RoleMocks
 
-[![Build Status](https://travis-ci.org/treppo/rspec-roles.svg?branch=master)](https://travis-ci.org/treppo/rspec-roles)
-[![Coverage Status](https://img.shields.io/coveralls/treppo/rspec-roles.svg)](https://coveralls.io/r/treppo/rspec-roles)
-[![Code Climate](https://codeclimate.com/github/treppo/rspec-roles.png)](https://codeclimate.com/github/treppo/rspec-roles)
-[![Dependency Status](https://gemnasium.com/treppo/rspec-roles.svg)](https://gemnasium.com/treppo/rspec-roles)
-[![Inline docs](http://inch-ci.org/github/treppo/rspec-roles.svg?branch=master)](http://inch-ci.org/github/treppo/rspec-roles)
+[![Build Status](https://travis-ci.org/treppo/rspec-role-mocks.svg?branch=master)](https://travis-ci.org/treppo/rspec-role-mocks)
+[![Coverage Status](https://img.shields.io/coveralls/treppo/rspec-role-mocks.svg)](https://coveralls.io/r/treppo/rspec-role-mocks)
+[![Code Climate](https://codeclimate.com/github/treppo/rspec-role-mocks.png)](https://codeclimate.com/github/treppo/rspec-role-mocks)
+[![Dependency Status](https://gemnasium.com/treppo/rspec-role-mocks.svg)](https://gemnasium.com/treppo/rspec-role-mocks)
+[![Inline docs](http://inch-ci.org/github/treppo/rspec-role-mocks.svg?branch=master)](http://inch-ci.org/github/treppo/rspec-role-mocks)
 
 TODO: Write a gem description
 
@@ -12,7 +12,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'rspec-roles'
+    gem 'rspec-role-mocks'
 
 And then execute:
 
@@ -20,7 +20,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rspec-roles
+    $ gem install rspec-role-mocks
 
 ## Usage
 
@@ -28,7 +28,7 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/treppo/rspec-roles/fork )
+1. Fork it ( https://github.com/treppo/rspec-role-mocks/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

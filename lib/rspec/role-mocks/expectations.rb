@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     class Expectations
       def initialize
         @expectations = {}

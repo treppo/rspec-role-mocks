@@ -1,7 +1,7 @@
 require_relative 'errors'
 
 module RSpec
-  module Roles
+  module RoleMocks
     class Verifier
       def initialize(name, calls, role, expectations)
         @name = name

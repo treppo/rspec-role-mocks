@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'rspec/roles/doubles'
-require 'rspec/roles/double'
+require 'rspec/role-mocks/doubles'
+require 'rspec/role-mocks/double'
 
 module RSpec
-  module Roles
+  module RoleMocks
     describe Doubles do
       let(:role) { Class.new { def log(message); end } }
       let(:dbl) { double }

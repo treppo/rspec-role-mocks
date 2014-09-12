@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'rspec/roles/matchers/receive'
+require 'rspec/role-mocks/matchers/receive'
 
 module RSpec
-  module Roles
+  module RoleMocks
     module Matchers
       describe Receive do
         describe '#matches?' do

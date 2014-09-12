@@ -1,5 +1,5 @@
-Feature: Rspec–Roles Comparison
-  A comparison of Rspec's builtin mocking features and Rspec–Roles
+Feature: Rspec–RoleMocks Comparison
+  A comparison of Rspec's builtin mocking features and Rspec–RoleMocks
 
   Background:
     Given a file named "app/lookup.rb" with:
@@ -134,7 +134,7 @@ Feature: Rspec–Roles Comparison
 
     Given a file named "spec/spec_helper.rb" with:
     """ruby
-    require 'rspec/roles'
+    require 'rspec/role-mocks'
     $LOAD_PATH.unshift('app')
     """
 

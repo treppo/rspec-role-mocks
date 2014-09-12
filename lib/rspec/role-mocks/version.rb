@@ -1,5 +1,5 @@
 module RSpec
-  module Roles
+  module RoleMocks
     VERSION = "0.0.1"
   end
 end

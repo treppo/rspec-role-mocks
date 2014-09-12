@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'rspec/roles/double'
-require 'rspec/roles/role'
+require 'rspec/role-mocks/double'
+require 'rspec/role-mocks/role'
 
 module RSpec
-  module Roles
+  module RoleMocks
     describe Double do
       def create_dbl(opts = {})
         role = Role.new 'Logger' do
